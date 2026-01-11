@@ -6,198 +6,94 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
   <style>
-    :root{
-      --bg: #060607;
-      --panel: rgba(255,255,255,0.06);
-      --panel2: rgba(255,255,255,0.04);
-      --border: rgba(255,255,255,0.14);
-      --text: rgba(255,255,255,0.94);
-      --muted: rgba(255,255,255,0.70);
-      --muted2: rgba(255,255,255,0.55);
-      --accent: rgba(255,255,255,0.85);
-      --shadow: 0 18px 55px rgba(0,0,0,0.60);
-    }
-
-    *{ box-sizing: border-box; }
-    html, body{
+    html, body {
       height: 100%;
       margin: 0;
-      background: var(--bg);
-      color: var(--text);
-      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, Helvetica, sans-serif;
-      letter-spacing: 0.2px;
+      background-color: #000;
+      font-family: Arial, Helvetica, sans-serif;
     }
 
-    /* Luxury backdrop: vignette + subtle spotlight */
-    body::before{
-      content:"";
-      position: fixed;
-      inset: 0;
-      background:
-        radial-gradient(1200px 700px at 50% 20%, rgba(255,255,255,0.10), transparent 60%),
-        radial-gradient(900px 500px at 30% 85%, rgba(255,255,255,0.05), transparent 65%),
-        radial-gradient(700px 400px at 85% 80%, rgba(255,255,255,0.04), transparent 60%),
-        linear-gradient(to bottom, rgba(0,0,0,0.40), rgba(0,0,0,0.85));
-      pointer-events: none;
-    }
-
-    .wrap{
-      min-height: 100%;
-      display: grid;
-      place-items: center;
-      padding: 28px 18px;
-      position: relative;
-      z-index: 1;
-    }
-
-    .frame{
-      width: min(980px, 100%);
-      border: 1px solid var(--border);
-      background: linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0.03));
-      border-radius: 18px;
-      box-shadow: var(--shadow);
-      overflow: hidden;
-    }
-
-    .topbar{
-      height: 10px;
-      background: linear-gradient(90deg,
-        rgba(255,255,255,0.00),
-        rgba(255,255,255,0.20),
-        rgba(255,255,255,0.00)
-      );
-      opacity: 0.7;
-    }
-
-    .content{
-      padding: 38px 26px 28px;
+    .container {
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
       text-align: center;
+      color: #fff;
+      padding: 24px;
+      box-sizing: border-box;
     }
 
-    .logo{
-      width: min(380px, 78%);
+    .logo {
+      max-width: 360px;
+      width: 80%;
+      margin-bottom: 40px;
       height: auto;
       display: block;
-      margin: 0 auto 24px;
-      filter: drop-shadow(0 10px 30px rgba(0,0,0,0.65));
     }
 
-    .headline{
-      margin: 0;
+    .coming-soon {
+      font-size: 28px;
+      letter-spacing: 4px;
+      font-weight: 700;
+      margin-bottom: 18px;
+      text-transform: uppercase;
+    }
+
+    .timer {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+      justify-content: center;
+      margin-top: 10px;
+    }
+
+    .box {
+      min-width: 92px;
+      padding: 14px 14px 12px;
+      border: 1px solid rgba(255,255,255,0.18);
+      border-radius: 10px;
+      background: rgba(255,255,255,0.04);
+      backdrop-filter: blur(4px);
+    }
+
+    .num {
+      font-size: 34px;
       font-weight: 800;
-      letter-spacing: 5px;
-      font-size: clamp(22px, 2.1vw, 30px);
-      text-transform: uppercase;
-    }
-
-    .accent-line{
-      width: min(560px, 85%);
-      height: 1px;
-      margin: 18px auto 18px;
-      background: linear-gradient(90deg,
-        rgba(255,255,255,0.00),
-        rgba(255,255,255,0.30),
-        rgba(255,255,255,0.00)
-      );
-    }
-
-    .sub{
-      margin: 0 auto 22px;
-      color: var(--muted);
-      max-width: 720px;
-      line-height: 1.55;
-      font-size: 14px;
-    }
-
-    /* Premium countdown bar */
-    .countdown{
-      margin: 18px auto 14px;
-      width: min(760px, 100%);
-      border: 1px solid var(--border);
-      background: linear-gradient(180deg, var(--panel), var(--panel2));
-      border-radius: 14px;
-      padding: 14px 14px;
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 0;
-      position: relative;
-    }
-
-    .slot{
-      padding: 10px 8px;
-      position: relative;
-    }
-
-    .slot:not(:last-child)::after{
-      content:"";
-      position: absolute;
-      top: 18%;
-      right: 0;
-      width: 1px;
-      height: 64%;
-      background: linear-gradient(180deg,
-        rgba(255,255,255,0.00),
-        rgba(255,255,255,0.18),
-        rgba(255,255,255,0.00)
-      );
-    }
-
-    .num{
-      font-size: clamp(26px, 3.6vw, 44px);
-      font-weight: 900;
       letter-spacing: 1px;
-      line-height: 1.05;
+      line-height: 1.1;
     }
 
-    .label{
+    .label {
       margin-top: 6px;
-      font-size: 11px;
-      letter-spacing: 3px;
-      color: var(--muted2);
+      font-size: 12px;
+      letter-spacing: 2px;
+      opacity: 0.85;
       text-transform: uppercase;
     }
 
-    .status{
-      margin-top: 12px;
-      color: var(--muted);
+    .note {
+      margin-top: 16px;
       font-size: 13px;
-      letter-spacing: 0.4px;
+      opacity: 0.75;
+      letter-spacing: 0.5px;
     }
 
-    .pill-row{
+    .links {
       margin-top: 18px;
       display: flex;
-      gap: 10px;
-      justify-content: center;
+      gap: 14px;
       flex-wrap: wrap;
-    }
-
-    .pill{
-      border: 1px solid rgba(255,255,255,0.14);
-      background: rgba(255,255,255,0.04);
-      padding: 10px 14px;
-      border-radius: 999px;
-      color: rgba(255,255,255,0.78);
-      font-size: 12px;
-      letter-spacing: 1.2px;
-      text-transform: uppercase;
-      user-select: none;
-    }
-
-    .cta-row{
-      margin-top: 22px;
-      display: flex;
-      gap: 12px;
       justify-content: center;
-      flex-wrap: wrap;
     }
 
-    .btn{
-      border: 1px solid rgba(255,255,255,0.18);
+    .link-btn {
+      border: 1px solid rgba(255,255,255,0.20);
       background: rgba(255,255,255,0.06);
       color: rgba(255,255,255,0.92);
-      padding: 12px 16px;
-      border-radius: 12px;
+      padding: 10px 14px;
+      border-radius: 10px;
       text-decoration: none;
       font-weight: 700;
       letter-spacing: 1px;
@@ -209,131 +105,116 @@
       gap: 10px;
     }
 
-    .btn:hover{
+    .link-btn:hover {
       transform: translateY(-1px);
-      background: rgba(255,255,255,0.09);
-      border-color: rgba(255,255,255,0.26);
-    }
-
-    .btn.primary{
-      background: rgba(255,255,255,0.12);
+      background: rgba(255,255,255,0.10);
       border-color: rgba(255,255,255,0.30);
     }
 
-    .footer{
-      padding: 16px 18px 18px;
-      border-top: 1px solid rgba(255,255,255,0.10);
-      background: rgba(0,0,0,0.22);
-      display: flex;
-      justify-content: space-between;
-      gap: 12px;
-      flex-wrap: wrap;
-      align-items: center;
-      color: rgba(255,255,255,0.55);
-      font-size: 12px;
+    /* Simple, subtle Instagram dot (keeps the original clean look) */
+    .ig-dot{
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: radial-gradient(circle at 30% 30%,
+        #ffd776,
+        #f77737,
+        #e1306c,
+        #c13584,
+        #833ab4
+      );
     }
 
-    .footer span{
-      letter-spacing: 0.4px;
-    }
-
-    @media (max-width: 560px){
-      .content{ padding: 34px 18px 24px; }
-      .countdown{ grid-template-columns: repeat(2, 1fr); }
-      .slot:nth-child(2)::after{ display:none; } /* keep dividers clean in 2x2 */
-      .slot:not(:last-child)::after{ height: 58%; top: 22%; }
-      .footer{ justify-content: center; text-align: center; }
+    @media (max-width: 600px) {
+      .coming-soon {
+        font-size: 22px;
+        letter-spacing: 3px;
+      }
+      .box { min-width: 82px; }
+      .num { font-size: 28px; }
     }
   </style>
 </head>
 
 <body>
-  <div class="wrap">
-    <div class="frame">
-      <div class="topbar"></div>
+  <div class="container">
+    <!-- Your actual logo filename in GitHub -->
+    <img src="IMG_7898.png" alt="Barrett Auto Group" class="logo" />
 
-      <div class="content">
-        <!-- IMPORTANT: Your logo file is IMG_7898.png in the repo root -->
-        <img class="logo" src="IMG_7898.png" alt="Barrett Auto Group Logo" />
+    <div class="coming-soon">COMING SOON</div>
 
-        <h1 class="headline">Coming Soon</h1>
-        <div class="accent-line"></div>
-
-        <p class="sub">
-          A premium online experience is on the way. Explore inventory, financing, and trade-in options—built for a
-          faster, more elevated dealership experience.
-        </p>
-
-        <div class="countdown" aria-label="Countdown timer">
-          <div class="slot">
-            <div class="num" id="days">00</div>
-            <div class="label">Days</div>
-          </div>
-          <div class="slot">
-            <div class="num" id="hours">00</div>
-            <div class="label">Hours</div>
-          </div>
-          <div class="slot">
-            <div class="num" id="minutes">00</div>
-            <div class="label">Minutes</div>
-          </div>
-          <div class="slot">
-            <div class="num" id="seconds">00</div>
-            <div class="label">Seconds</div>
-          </div>
-        </div>
-
-        <div class="status" id="statusText">Launching soon.</div>
-
-        <div class="pill-row" aria-label="Key services">
-          <div class="pill">Inventory</div>
-          <div class="pill">Financing</div>
-          <div class="pill">Trade-Ins</div>
-          <div class="pill">Appointments</div>
-        </div>
-
-        <div class="cta-row">
-          <!-- Update these to your preferred email/phone -->
-          <a class="btn primary" href="mailto:info@barrettautogroup.com?subject=Barrett%20Auto%20Group%20-%20Launch%20Notification">
-            Notify Me
-          </a>
-          <a class="btn" href="tel:+1-000-000-0000">
-            Call Now
-          </a>
-        </div>
+    <div class="timer" aria-label="Countdown Timer">
+      <div class="box">
+        <div class="num" id="days">00</div>
+        <div class="label">Days</div>
       </div>
-
-      <div class="footer">
-        <span>Barrett Auto Group</span>
-        <span id="targetText">Launch target: —</span>
+      <div class="box">
+        <div class="num" id="hours">00</div>
+        <div class="label">Hours</div>
       </div>
+      <div class="box">
+        <div class="num" id="minutes">00</div>
+        <div class="label">Minutes</div>
+      </div>
+      <div class="box">
+        <div class="num" id="seconds">00</div>
+        <div class="label">Seconds</div>
+      </div>
+    </div>
+
+    <div class="note" id="statusText">Launching soon.</div>
+
+    <div class="links">
+      <a class="link-btn" href="mailto:info@barrettautogroup.com?subject=Barrett%20Auto%20Group%20Launch%20Updates&body=Please%20add%20me%20to%20the%20launch%20updates%20list.">
+        Subscribe
+      </a>
+
+      <a class="link-btn" href="https://www.instagram.com/barrettautogroup" target="_blank" rel="noopener">
+        <span class="ig-dot"></span> Instagram
+      </a>
     </div>
   </div>
 
   <script>
-    // Countdown target = "today + 2 calendar months" (local time)
-    const launchDate = new Date();
-    launchDate.setMonth(launchDate.getMonth() + 2);
+    // ============================
+    // Countdown that DOES NOT reset on refresh
+    // We store the launch timestamp in localStorage one time.
+    // Target = first visit time + 2 calendar months
+    // ============================
 
+    const STORAGE_KEY = "barrett_launch_ts_v1";
+
+    function pad(n) {
+      return String(n).padStart(2, "0");
+    }
+
+    function getOrCreateLaunchDate() {
+      const saved = localStorage.getItem(STORAGE_KEY);
+      if (saved) {
+        const ts = Number(saved);
+        if (!Number.isNaN(ts) && ts > 0) return new Date(ts);
+      }
+
+      // Create a new fixed target: now + 2 calendar months
+      const d = new Date();
+      d.setMonth(d.getMonth() + 2);
+
+      localStorage.setItem(STORAGE_KEY, String(d.getTime()));
+      return d;
+    }
+
+    const launchDate = getOrCreateLaunchDate();
+
+    const statusText = document.getElementById("statusText");
     const elDays = document.getElementById("days");
     const elHours = document.getElementById("hours");
     const elMinutes = document.getElementById("minutes");
     const elSeconds = document.getElementById("seconds");
-    const statusText = document.getElementById("statusText");
-    const targetText = document.getElementById("targetText");
 
-    function pad(n){ return String(n).padStart(2, "0"); }
+    function updateCountdown() {
+      const diff = launchDate.getTime() - Date.now();
 
-    function formatLocalDateTime(d){
-      const options = { year:"numeric", month:"long", day:"numeric", hour:"numeric", minute:"2-digit" };
-      return d.toLocaleString(undefined, options);
-    }
-
-    function updateCountdown(){
-      const now = Date.now();
-      const diff = launchDate.getTime() - now;
-
-      if (diff <= 0){
+      if (diff <= 0) {
         elDays.textContent = "00";
         elHours.textContent = "00";
         elMinutes.textContent = "00";
@@ -343,6 +224,7 @@
       }
 
       const totalSeconds = Math.floor(diff / 1000);
+
       const days = Math.floor(totalSeconds / (3600 * 24));
       const hours = Math.floor((totalSeconds % (3600 * 24)) / 3600);
       const minutes = Math.floor((totalSeconds % 3600) / 60);
@@ -352,10 +234,10 @@
       elHours.textContent = pad(hours);
       elMinutes.textContent = pad(minutes);
       elSeconds.textContent = pad(seconds);
+
       statusText.textContent = "Launching soon.";
     }
 
-    targetText.textContent = "Launch target: " + formatLocalDateTime(launchDate);
     updateCountdown();
     setInterval(updateCountdown, 1000);
   </script>
